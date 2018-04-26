@@ -79,6 +79,16 @@ __WRITE_RESULT Sha1Class::write(uint8_t data) {
   __WRITE_RETURN(1);
 }
 
+size_t Sha1Class::write(uint8_t *data, size_t size) { // similar to Arduino Print::write(buff, size) func in <Print.cpp>
+  size_t n = 0;
+  while (size--) {
+    if (write(*data++)) n++;
+    else break;
+  }
+  return n;
+}
+
+
 void Sha1Class::pad() {
   // Implement SHA-1 padding (fips180-2 §5.1.1)
 

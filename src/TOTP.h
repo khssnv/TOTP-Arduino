@@ -2,8 +2,9 @@
 // Arduino Library
 //
 // Luca Dentella (http://www.lucadentella.it)
+// Changed 26 april 2018 by Alisher Khassanov <a.khssnv@gmail.com> to let it work on Libelium Waspmote
 
-#include "Arduino.h"
+#include "Waspmote.h" // Libelium implements <Arduino.h> for Waspmote in <Waspmote.h>
 
 #ifndef _TOTP_H
 #define _TOTP_H

@@ -2,7 +2,7 @@
 #define Sha1_h
 
 #include <inttypes.h>
-#include "Print.h"
+#include "WaspUSB.h" // Libelium implements Arduino <Print.h> for Waspmote in <WaspUSB.h>
 
 #if ARDUINO < 100
 #define __WRITE_RESULT void
@@ -24,15 +24,15 @@ union _state {
   uint32_t w[HASH_LENGTH/4];
 };
 
-class Sha1Class : public Print
+class Sha1Class : public WaspUSB
 {
   public:
     void init(void);
     void initHmac(const uint8_t* secret, int secretLength);
     uint8_t* result(void);
     uint8_t* resultHmac(void);
-    virtual __WRITE_RESULT write(uint8_t);
-    using Print::write;
+    __WRITE_RESULT write(uint8_t);
+    size_t write(uint8_t *data, size_t size); // replace Arduino write(buff, size) func by own
   private:
     void pad();
     void addUncounted(uint8_t data);
